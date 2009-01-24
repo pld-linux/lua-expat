@@ -22,7 +22,8 @@ LuaExpat egy SAX XML elemző az Expat könyvtárra épülve.
 %prep
 %setup -q -n luaexpat-%{version}
 %{__sed} -i "s@usr/local@usr@g ; s@5\.0@5.1@ ; s@^LUA_INC.*@LUA_INC= %{_includedir}/lua51@ ; \
-	s@LUA_VERSION_NUM= 500@LUA_VERSION_NUM= 501@" config
+	s@LUA_VERSION_NUM= 500@LUA_VERSION_NUM= 501@ ; \
+	s@CFLAGS = \(.*\)@CFLAGS = -fPIC \1@" config
 
 %build
 %{__make}
