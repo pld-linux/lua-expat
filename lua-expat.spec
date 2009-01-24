@@ -2,7 +2,7 @@ Summary:	LuaExpat is a SAX XML parser based on the Expat library
 Summary(hu.UTF-8):	LuaExpat egy SAX XML elemző az Expat könyvtárra épülve
 Name:		lua-expat
 Version:	1.1
-Release:	0.1
+Release:	1
 License:	BSD-like
 Group:		Development/Languages
 Source0:	http://luaforge.net/frs/download.php/2469/luaexpat-%{version}.tar.gz
