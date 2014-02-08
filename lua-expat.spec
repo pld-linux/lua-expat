@@ -5,7 +5,7 @@ Version:	1.2.0
 Release:	1
 License:	BSD-like
 Group:		Development/Languages
-Source0:	http://matthewwild.co.uk/projects/luaexpat/luaexpat-1.2.0.tar.gz
+Source0:	http://matthewwild.co.uk/projects/luaexpat/luaexpat-%{version}.tar.gz
 # Source0-md5:	03efe50c7f30a34580701e6527d7bfee
 URL:		http://luaforge.net/projects/luaexpat/
 BuildRequires:	expat-devel
@@ -26,18 +26,17 @@ LuaExpat egy SAX XML elemző az Expat könyvtárra épülve.
 	s@CFLAGS = \(.*\)@CFLAGS = -fPIC \1@" config
 
 %build
-%{__make} LIB_OPTION='-shared -llua51'
+%{__make} \
+	CC="%{__cc} %{rpmcflags} %{rpmcppflags}" \
+	LIB_OPTION='-shared -llua51'
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_datadir},%{_libdir}}/lua/5.1
-install src/lxp.so* $RPM_BUILD_ROOT%{_libdir}/lua/5.1
+install -p src/lxp.so* $RPM_BUILD_ROOT%{_libdir}/lua/5.1
 install -d $RPM_BUILD_ROOT%{_datadir}/lua/5.1/lxp
-install src/lxp/lom.lua $RPM_BUILD_ROOT%{_datadir}/lua/5.1/lxp
-curdir=$(pwd)
-cd $RPM_BUILD_ROOT%{_libdir}/lua/5.1
-ln -sf lxp.so.1.2.0 lxp.so
-cd $curdir
+cp -p src/lxp/lom.lua $RPM_BUILD_ROOT%{_datadir}/lua/5.1/lxp
+ln -s lxp.so.%{version} $RPM_BUILD_ROOT%{_libdir}/lua/5.1/lxp.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
