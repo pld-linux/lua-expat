@@ -26,7 +26,7 @@ LuaExpat egy SAX XML elemző az Expat könyvtárra épülve.
 	s@CFLAGS = \(.*\)@CFLAGS = -fPIC \1@" config
 
 %build
-%{__make}
+%{__make} LIB_OPTION='-shared -llua51'
 
 %install
 rm -rf $RPM_BUILD_ROOT
