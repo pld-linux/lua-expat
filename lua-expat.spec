@@ -36,7 +36,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/lua/5.1/lxp
 install src/lxp/lom.lua $RPM_BUILD_ROOT%{_datadir}/lua/5.1/lxp
 curdir=$(pwd)
 cd $RPM_BUILD_ROOT%{_libdir}/lua/5.1
-ln -sf lxp.so.1.1.0 lxp.so
+ln -sf lxp.so.1.2.0 lxp.so
 cd $curdir
 
 %clean
